@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: cflogviewer Plug-in
+Bundle-SymbolicName: cflogviewer
+Bundle-Version: 1.0.0
+Bundle-ClassPath: com.mikenimer.logviewer.views.LogViewer/
+Bundle-Localization: plugin
