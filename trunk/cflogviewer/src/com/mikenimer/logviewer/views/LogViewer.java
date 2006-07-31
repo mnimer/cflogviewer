@@ -1,16 +1,14 @@
-/**
- * @author Mike Nimer (mnimer@gmail.com)
- * Copyright (c) 2005 Mike Nimer
- */
 package com.mikenimer.logviewer.views;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.*;
+import org.eclipse.ui.part.ViewPart;
 
 import com.mikenimer.logviewer.cf5tableview.LogTableViewer;
 import com.mikenimer.logviewer.treeview.LogFile;
@@ -22,40 +20,17 @@ public class LogViewer extends ViewPart
     private LogTreeViewer logTreeViewer;
     private LogTableViewer logTableViewer;
     
-	public void createPartControl(Composite parent) {
-
-	    GridLayout gridLayout = new GridLayout();
-	    gridLayout.numColumns = 3;
-        gridLayout.makeColumnsEqualWidth = true;
- 		parent.setLayout(gridLayout);
+	public void createPartControl(Composite parent) 
+	{
+		SashForm sashForm = new SashForm(parent, SWT.HORIZONTAL);
  		
- 		GridData treeData = new GridData();
- 		treeData.horizontalSpan = 1;
-        treeData.horizontalAlignment = GridData.FILL;        
-        treeData.verticalAlignment = GridData.FILL;
-        treeData.grabExcessVerticalSpace = true;
-        
-        GridData tableData = new GridData();
-        tableData.horizontalSpan = 2;
-        tableData.horizontalAlignment = GridData.FILL;        
-        tableData.verticalAlignment = GridData.FILL;
-        tableData.grabExcessVerticalSpace = true;
-	    
-        // create tdir tree, assign to grid layout
-        
+ 		// create tdir tree, assign to grid layout
 	    logTreeViewer = new LogTreeViewer(this);
-	    logTreeViewer.createPartControl(parent);
-	    TreeViewer treeView = logTreeViewer.getTreeViewer();
-	    //logTreeViewer.createPartControl(parent);
-	    treeView.getTree().setLayoutData(treeData);
-	    
-	    
+	    logTreeViewer.createPartControl(sashForm);
+
 	    // create table, assign to grid layout
 	    logTableViewer = new LogTableViewer(this);
-	    logTableViewer.createPartControl(parent);
-	    TableViewer tableView = logTableViewer.getViewer();
-	    tableView.getTable().setLayoutData(tableData);
-	    
+	    logTableViewer.createPartControl(sashForm);
 	}
 	
 	/**

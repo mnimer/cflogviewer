@@ -1,7 +1,3 @@
-/**
- * @author Mike Nimer (mnimer@gmail.com)
- * Copyright (c) 2005 Mike Nimer
- */
 package com.mikenimer.logviewer.cf5tableview;
 
 import org.eclipse.jface.viewers.ITableLabelProvider;
