@@ -1,7 +1,4 @@
-/**
- * @author Mike Nimer (mnimer@gmail.com)
- * Copyright (c) 2005 Mike Nimer
- */
+
 package com.mikenimer.logviewer.cf5tableview;
 
 import java.io.File;

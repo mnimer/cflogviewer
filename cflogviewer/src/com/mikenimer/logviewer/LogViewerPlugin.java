@@ -1,33 +1,22 @@
-/**
- * @author Mike Nimer (mnimer@gmail.com)
- * Copyright (c) 2005 Mike Nimer
- */
 package com.mikenimer.logviewer;
 
 import org.eclipse.ui.plugin.*;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.BundleContext;
-import java.util.*;
 
 /**
  * The main plugin class to be used in the desktop.
  */
 public class LogViewerPlugin extends AbstractUIPlugin {
+
 	//The shared instance.
 	private static LogViewerPlugin plugin;
-	//Resource bundle.
-	private ResourceBundle resourceBundle;
 	
 	/**
 	 * The constructor.
 	 */
 	public LogViewerPlugin() {
-		super();
 		plugin = this;
-		try {
-			resourceBundle = ResourceBundle.getBundle("com.mikenimer.logviewer.LogViewerPluginResources");
-		} catch (MissingResourceException x) {
-			resourceBundle = null;
-		}
 	}
 
 	/**
@@ -42,6 +31,7 @@ public class LogViewerPlugin extends AbstractUIPlugin {
 	 */
 	public void stop(BundleContext context) throws Exception {
 		super.stop(context);
+		plugin = null;
 	}
 
 	/**
@@ -52,22 +42,13 @@ public class LogViewerPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns the string from the plugin's resource bundle,
-	 * or 'key' if not found.
+	 * Returns an image descriptor for the image file at the given
+	 * plug-in relative path.
+	 *
+	 * @param path the path
+	 * @return the image descriptor
 	 */
-	public static String getResourceString(String key) {
-		ResourceBundle bundle = LogViewerPlugin.getDefault().getResourceBundle();
-		try {
-			return (bundle != null) ? bundle.getString(key) : key;
-		} catch (MissingResourceException e) {
-			return key;
-		}
-	}
-
-	/**
-	 * Returns the plugin's resource bundle,
-	 */
-	public ResourceBundle getResourceBundle() {
-		return resourceBundle;
+	public static ImageDescriptor getImageDescriptor(String path) {
+		return AbstractUIPlugin.imageDescriptorFromPlugin("ColdFusion_Log_Viewer", path);
 	}
 }

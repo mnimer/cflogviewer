@@ -1,6 +1,6 @@
-/**
- * @author Mike Nimer (mnimer@gmail.com)
- * Copyright (c) 2005 Mike Nimer
+/*
+ * Created on Feb 11, 2005
+ * Copyright 2005, Macromedia Inc.
  */
 package com.mikenimer.logviewer.cf5tableview;
 
