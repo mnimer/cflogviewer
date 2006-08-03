@@ -28,7 +28,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.DrillDownAdapter;
 
 
 import com.mikenimer.logviewer.views.LogViewer;
@@ -43,7 +42,6 @@ public class LogTreeViewer
     private TreeViewer viewer;
     private TreeContentProvider treeContentProvider;
     private TreeLabelProvider treeLabelProvider;
-    private DrillDownAdapter drillDownAdapter;
     private Action action1; // add log folder
     private Action action2; // delete log folder
     private Action action3; // delete file
