@@ -1,24 +1,30 @@
 package com.mikenimer.logviewer.views;
 
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.TreeViewer;
+
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
-import com.mikenimer.logviewer.cf5tableview.LogTableViewer;
+import com.mikenimer.logviewer.tableview.LogTableViewer;
 import com.mikenimer.logviewer.treeview.LogFile;
 import com.mikenimer.logviewer.treeview.LogTreeViewer;
+import com.mikenimer.logviewer.utils.LogFilesConfig;
 
 
 public class LogViewer extends ViewPart 
 {
     private LogTreeViewer logTreeViewer;
     private LogTableViewer logTableViewer;
+    public static LogFilesConfig logFileConfig;
+    
+    public LogViewer()
+    {
+    	// todo: Parse XML file.
+    	String file = "C:\\MyDocuments\\web\\skunkworks\\mnimer\\eclipse plugins\\ColdFusion Log Viewer\\logfiles.xml";
+    	logFileConfig = new LogFilesConfig(file);
+    }
     
 	public void createPartControl(Composite parent) 
 	{
@@ -27,10 +33,13 @@ public class LogViewer extends ViewPart
  		// create tdir tree, assign to grid layout
 	    logTreeViewer = new LogTreeViewer(this);
 	    logTreeViewer.createPartControl(sashForm);
-
+	    
+	    
 	    // create table, assign to grid layout
 	    logTableViewer = new LogTableViewer(this);
 	    logTableViewer.createPartControl(sashForm);
+	    
+	    sashForm.setWeights(new int[] {1,3});
 	}
 	
 	/**
@@ -39,13 +48,7 @@ public class LogViewer extends ViewPart
 	public void setFocus() {
 	    //logTreeViewer.getControl().setFocus();
 	}
-	
-    private void showMessage(String message)
-    {
-        MessageDialog.openInformation( this.getViewSite().getShell(), "CF LogViewer", message);
-         
-    }
-    	
+
 	public void fileSelectionChange(LogFile file)
 	{
 	    // redirect into LogTableViewer
