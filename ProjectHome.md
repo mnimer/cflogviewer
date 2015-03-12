@@ -1,0 +1,1 @@
+This is an eclipse log viewer that is capable of reading and 'tailing' ColdFusion, Adobe and other log file formats.
